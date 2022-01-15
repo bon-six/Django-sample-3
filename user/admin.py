@@ -1,21 +1,22 @@
-from django import forms
-from django.contrib import admin
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
+from django.forms import (
+    ModelForm, CharField, PasswordInput
+)
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib import admin
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-# Register your models here.
 
+from django.contrib.auth import get_user_model
 User = get_user_model()
 
-class UserCreationForm(forms.ModelForm):
+class UserCreationForm(ModelForm):
     """
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password1 = CharField(widget=PasswordInput)
+    password2 = CharField(label='Confirm Password', widget=PasswordInput)
 
     class Meta:
         model = User
@@ -40,7 +41,7 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-class UserChangeForm(forms.ModelForm):
+class UserChangeForm(ModelForm):
     """
     A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's

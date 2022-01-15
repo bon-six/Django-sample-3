@@ -8,7 +8,7 @@ from .models import Task
 from .serializers import TaskSerializer
 from .permissions import IsManagerOrReadOnly, IsAdminOrReadOnly
 
-# Create your views here.
+'''
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
@@ -22,20 +22,19 @@ class TaskViewSet(viewsets.ModelViewSet):
             case _:
                 raise exceptions.PermissionDenied
         return [permission() for permission in permission_classes]
+        '''
 
 
-'''
 # change from ListAPIView to ListCreateAPIView, will enable new record creation
 #class ListTasks(generics.ListAPIView):
 class ListTasks(generics.ListCreateAPIView):
-    permission_classes = (IsAdminOrReadOnly,)
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    #permission_classes = (IsAdminOrReadOnly,)
 
 # change from RetrieveAPIView to RetrieveUpdateDestroyAPIView, enable update and delete
 #class DetailTask(generics.RetrieveAPIView):
 class DetailTask(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsManagerOrReadOnly,)
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    '''
+    #permission_classes = (IsManagerOrReadOnly,)
