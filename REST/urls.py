@@ -19,14 +19,13 @@ from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.schemas import get_schema_view
 
+from rest_framework import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/task/', include('task.urls')),
-]
-'''
     path('api-auth/',include('rest_framework.urls')),
-    path('api-token-auth/', obtain_auth_token),
+    path('api-token-auth/', obtain_auth_token, name='token_auth'),
     path('', include('user.urls')),
     path('openapi/', get_schema_view(
         title="A ToDo task API",
@@ -37,4 +36,3 @@ urlpatterns = [
         extra_context={'schema_url':'openapi-schema'}
     ), name='swagger-ui'),
 ]
-'''

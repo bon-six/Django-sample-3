@@ -1,0 +1,20 @@
+{% extends 'user/base.html' %}
+
+{% block title %}User Login Page{% endblock title %}
+
+{% block content %} 
+    <h2>Sign Up Page</h2>
+    <form action="{% url 'token_auth' %}" method="post">
+        {% csrf_token %}
+        <label for="username"><b>Email</b></label>
+        <input type="text" placeholder="Enter your login account" name="username" required>
+        <br>
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+
+        <br><br>
+        <a href="{% url 'home' %}">Home</a>
+    </form>
+{% endblock content %}

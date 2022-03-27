@@ -132,17 +132,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # user customized
 AUTH_USER_MODEL = 'user.MyUser'
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL= 'home'
+
+EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 
 # REST FRAMEWORK
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # we can set to one of: 'AllowAny', 'IsAuthenticatedOrReadOnly', 'IsAuthenticated', 'IsAdminUser', 
-        'rest_framework.permissions.AllowAny' 
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly' 
     ],
-}
-'''
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
     ]
-}'''
+}
